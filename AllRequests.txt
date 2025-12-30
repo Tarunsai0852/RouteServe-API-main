@@ -1,0 +1,1203 @@
+Step1 : User need to register
+
+Request Type: Post
+
+http://localhost:8080/registerCustomer
+
+{
+     "customerId": "c103",
+    "firstName": "Soumya",
+    "lastName": "Pettem",
+    "age": 26,
+    "gender": "female",
+    "mobileNumber": "8984958585",
+    "email": "soumya@gmail.com",
+    "address": {
+        "addressId": "cadd106",
+        "buildingName": "Soumya Nilayam",
+        "streetNo": "123A",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+
+Table : select * from customer;
+*********************************************************************
+Step2 : Create Login table 
+create table Login(userid varchar(255),is_owner bit(1),logged_in bit(1) ,password varchar(255),user_name varchar(255));
+insert into Login(userid,is_owner,logged_in,password,user_name) values ('c103',false,true,"user123",'Soumya');
+insert into Login(userid,is_owner,logged_in,password,user_name) values ('c102',false,true,"user123",'shirisha');
+insert into Login(userid,is_owner,logged_in,password,user_name) values ('c101',true,true,"user123",'divya');
+
+Step3 : User need to signin
+Request Type: Post
+http://localhost:8080/signin
+
+{
+    "userid": "c102",
+	"userName":"shirisha",
+	"password":"user123",
+	 "loggedIn":true,
+	 "isOwner":false
+}
+
+Output : LOGGED_IN
+*******************************************************************************************************************************
+http://localhost:8080/updateCustomer
+Request Type: PUT
+{
+     "customerId": "c103",
+    "firstName": "Soumya",
+    "lastName": "Pettem",
+    "age": 24,
+    "gender": "female",
+    "mobileNumber": "8984958585",
+    "email": "soumya@gmail.com",
+    "address": {
+        "addressId": "cadd106",
+        "buildingName": "Soumya Nilayam",
+        "streetNo": "123A",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+
+output:
+{
+    "customerId": "c103",
+    "firstName": "Soumya",
+    "lastName": "Pettem",
+    "age": 24,
+    "gender": "female",
+    "mobileNumber": "8984958585",
+    "email": "soumya@gmail.com",
+    "address": {
+        "addressId": "cadd106",
+        "buildingName": "Soumya Nilayam",
+        "streetNo": "123A",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+***********************************************************************
+viewCustomer
+RequestType :GET
+URL:
+http://localhost:8080/viewCustomer
+
+Request: {
+     "customerId": "c102"
+}
+Response:
+{
+    "customerId": "c102",
+    "firstName": "Shirisha",
+    "lastName": "Alakuntla",
+    "age": 26,
+    "gender": "female",
+    "mobileNumber": "8494975477",
+    "email": "shirisha@gmail.com",
+    "address": {
+        "addressId": "cadd105",
+        "buildingName": "Shirisha Apartments",
+        "streetNo": "123A",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+*******************************************************************
+http://localhost:8080/addRestaurant
+Post
+{
+    "restaurantId": "Rest05",
+    "restaurantName":"Amogham",
+    "isActive":true,
+     "address": {
+        "addressId": "Add105",
+        "buildingName": "Amogham Plaza",
+        "streetNo": "MG01",
+        "area": "Kukatpally",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500082"
+    },
+    "itemList" : [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+    ,
+    "managerName":"Shiva",
+    "contactNumber":"8008503054"
+
+
+
+}
+**********************************************************
+http://localhost:8080/updateRestaurant
+PUT
+{
+    "restaurantId": "Rest03",
+    "restaurantName":"Grand Hotel",
+    "isActive":true,
+     "address": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    }
+
+}
+*********************************************
+http://localhost:8080/removeRestaurant
+Delete
+{
+    "restaurantId": "Rest04"
+   
+
+}
+*******************************************
+http://localhost:8080/addItem
+POST
+{
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+    "quantity":2,
+    "category":{
+        "catId":"CATVEG",
+        "categoryName":"Vegetarian"
+    },
+    "restaurants" : [
+        {
+    "restaurantId": "Rest03",
+    "restaurantName":"Grand Hotel",
+    "isActive":true,
+     "address": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    }
+
+}
+    ],
+    "cost":60.0
+}
+
+************************************************************
+http://localhost:8080/updateItem
+PUT
+
+{
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+    "quantity":3,
+    "category":{
+        "catId":"CATVEG",
+        "categoryName":"Vegetarian"
+    },
+    "restaurants" : [
+        {
+    "restaurantId": "Rest03",
+    "restaurantName":"Grand Hotel",
+    "isActive":true,
+     "address": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    }
+
+}
+    ],
+    "cost":90.0
+}
+************************************************
+http://localhost:8080/viewItemById/ITEM102
+GET
+Response:
+{
+    "itemId": "ITEM102",
+    "itemName": "Chicken Biryani",
+    "category": {
+        "catId": "CATNONVEG",
+        "categoryName": "Non-Vegetarian"
+    },
+    "quantity": 1,
+    "cost": 340.0,
+    "active": true
+}
+*****************************************
+http://localhost:8080/viewAllItems/category
+GET
+Request:
+{
+    "catId":"CATVEG",
+    "categoryName":"Vegetarian"
+}
+Response:
+[
+    {
+        "itemId": "ITEM101",
+        "itemName": "IDLI",
+        "category": {
+            "catId": "CATVEG",
+            "categoryName": "Vegetarian"
+        },
+        "quantity": 3,
+        "cost": 90.0,
+        "active": true
+    }
+]
+******************************************************
+http://localhost:8080/viewAllItems/restaurant
+GET
+{
+    "restaurantId":"Rest03"
+}
+Output:
+[
+    {
+        "itemId": "ITEM101",
+        "itemName": "IDLI",
+        "category": {
+            "catId": "CATVEG",
+            "categoryName": "Vegetarian"
+        },
+        "quantity": 3,
+        "cost": 90.0,
+        "active": true
+    },
+    {
+        "itemId": "ITEM102",
+        "itemName": "Chicken Biryani",
+        "category": {
+            "catId": "CATNONVEG",
+            "categoryName": "Non-Vegetarian"
+        },
+        "quantity": 1,
+        "cost": 340.0,
+        "active": true
+    }
+]
+*****************************************************
+http://localhost:8080/viewAllItemsByName/Rest05
+GET
+[
+    {
+        "itemId": "ITEM101",
+        "itemName": "IDLI",
+        "category": {
+            "catId": "CATVEG",
+            "categoryName": "Vegetarian"
+        },
+        "quantity": 3,
+        "cost": 90.0,
+        "active": true
+    },
+    {
+        "itemId": "ITEM102",
+        "itemName": "Chicken Biryani",
+        "category": {
+            "catId": "CATNONVEG",
+            "categoryName": "Non-Vegetarian"
+        },
+        "quantity": 1,
+        "cost": 340.0,
+        "active": true
+    }
+]
+***********************************************************
+Category:
+http://localhost:8080/category/add
+
+POST:
+{
+    "catId":"CATVEG",
+    "categoryName":"Vegetarian"
+}
+************************************
+http://localhost:8080/category/add
+
+POST
+{
+    "catId":"CATVEG",
+    "categoryName":"Vegetari"
+}
+output:
+{
+    "catId":"CATVEG",
+    "categoryName":"Vegetari"
+}
+
+*********************************************
+http://localhost:8080/category/view
+GET
+{
+    "catId":"CATVEG",
+    "categoryName":"Vegetarian"
+}
+output:
+{
+    "catId": "CATVEG",
+    "categoryName": "Vegetarian"
+}
+
+***********************************
+http://localhost:8080/addItemToCart/ITEM102
+POST
+Request:
+{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+}
+******************************************************************
+http://localhost:8080/increaseQuantity/ITEM101/4
+Request: PUT
+{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+}
+
+****************************************************************************
+http://localhost:8080/reduceQuantity/ITEM101/3
+PUT
+
+req:
+{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+}
+
+*****************************************************************
+http://localhost:8080/removeItemFromCart/ITEM101
+
+detete
+
+req:
+{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+}
+**********************************************************************
+
+http://localhost:8080/addOrder
+POST
+{
+     "orderId":"12445",
+      "orderDate":"2017-01-13T17:09:42.411",
+      "cart":{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+},
+      "orderStatus":"confirm",
+      "isActive":true
+}
+***************************************************
+http://localhost:8080/updateOrder
+PUT
+{
+     "orderId":"12445",
+      "orderDate":"2022-01-13T17:09:42.411",
+      "cart":{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+},
+      "orderStatus":"confirm",
+      "isActive":true
+}
+**********************************************
+http://localhost:8080/viewOrder
+GET
+
+{
+     "orderId":"12445"
+     
+}
+
+**********************************************
+http://localhost:8080/bill/addBill
+PUT
+{
+    "billId":"B123847744",
+    "billDate":"2022-12-25 18:03:45",
+    "order":{
+     "orderId":"12446",
+      "orderDate":"2022-01-13T17:09:48.411",
+      "cart":{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+},
+      "orderStatus":"confirm",
+      "isActive":true
+},
+    "totalItem":4,
+    "totalCost":560.34
+
+
+}
+*******************************************************************
+http://localhost:8080/bill/viewBill
+GET
+{
+    "billId":"B123847744"
+   
+}
+output:
+{
+    "billId": "B123847744",
+    "billDate": "2022-12-25 18:03:45",
+    "order": {
+        "orderId": 12446,
+        "orderDate": "2022-01-13T17:09:48.411",
+        "cart": {
+            "cartId": "CART101",
+            "customer": {
+                "customerId": "c104",
+                "firstName": "murali",
+                "lastName": "krishna",
+                "age": 24,
+                "gender": "male",
+                "mobileNumber": "8974748482",
+                "email": "murali@gmail.com",
+                "address": {
+                    "addressId": "S104",
+                    "buildingName": "Murali Builders",
+                    "streetNo": "10/4",
+                    "area": "Gachibowli",
+                    "city": "hybd",
+                    "state": "telengana",
+                    "country": "india",
+                    "pincode": "500032"
+                },
+                "active": true
+            },
+            "itemList": [
+                {
+                    "itemId": "ITEM102",
+                    "itemName": "Chicken Biryani",
+                    "category": {
+                        "catId": "CATNONVEG",
+                        "categoryName": "Non-Vegetarian"
+                    },
+                    "quantity": 1,
+                    "cost": 340.0,
+                    "active": true
+                }
+            ]
+        },
+        "orderStatus": "confirm",
+        "active": true
+    },
+    "totalItem": 4,
+    "totalCost": 560.34
+}
+***************************************************************
+http://localhost:8080/bill/viewBills/c104
+Get
+************************************
+http://localhost:8080/bill/calculateTotalCost
+{
+    "billId":"B123847744",
+    "billDate":"2022-12-25 18:03:45",
+    "order":{
+     "orderId":"12446",
+      "orderDate":"2022-01-13T17:09:48.411",
+      "cart":{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+},
+      "orderStatus":"confirm",
+      "isActive":true
+},
+    "totalItem":4,
+    "totalCost":560.34
+
+
+}
+***************************************
+http://localhost:8080/bill/updateBill
+{
+    "billId":"B123847744",
+    "billDate":"2022-12-25 18:03:45",
+    "order":{
+     "orderId":"12446",
+      "orderDate":"2022-01-13T17:09:48.411",
+      "cart":{
+    "cartId":"CART101",
+    "customer":{
+     "customerId": "c104",
+    "firstName": "murali",
+    "lastName": "krishna",
+    "age": 24,
+    "gender": "male",
+    "mobileNumber": "8974748482",
+    "email": "murali@gmail.com",
+    "address": {
+        "addressId": "S104",
+        "buildingName": "Murali Builders",
+        "streetNo": "10/4",
+        "area": "Gachibowli",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500032"
+    },
+    "active": true
+}
+,
+    "itemList": [
+        {
+    "itemId": "ITEM101",
+    "itemName":"IDLI",
+	"category":{
+	   "catId":"CATVEG",
+	   "categoryName":"Vegetarian"
+	},
+    "quantity":3,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}, {
+    "itemId": "ITEM102",
+    "itemName":"Chicken Biryani",
+	"category":{
+	   "catId":"CATNONVEG",
+	   "categoryName":"Non-Vegetarian"
+	},
+    "quantity":2,
+	"cost":30,
+     "restaurants": {
+        "addressId": "Add103",
+        "buildingName": "Grand Homes",
+        "streetNo": "PD01",
+        "area": "KOTI",
+        "city": "hybd",
+        "state": "telengana",
+        "country": "india",
+        "pincode": "500044"
+    },
+	"isActive":true
+
+}
+    ]
+},
+      "orderStatus":"confirm",
+      "isActive":true
+},
+    "totalItem":4,
+    "totalCost":560.34
+
+
+}
+*********************************************************
+http://localhost:8080/bill/removeBill
+Delete
+{
+    "billId":"B123847745"
+}
+
+
+
+
+
+
