@@ -1,4 +1,4 @@
-//package com.capgemini.controller;
+//package com.tarunsai.controller;
 //
 //import static org.hamcrest.CoreMatchers.is;
 //import static org.hamcrest.CoreMatchers.notNullValue;
@@ -22,9 +22,9 @@
 //import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 //import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 //
-//import com.capgemini.entities.Address;
-//import com.capgemini.entities.Customer;
-//import com.capgemini.service.ICustomerService;
+//import com.tarunsai.entities.Address;
+//import com.tarunsai.entities.Customer;
+//import com.tarunsai.service.ICustomerService;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.databind.ObjectWriter;
 //

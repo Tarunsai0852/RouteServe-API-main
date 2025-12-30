@@ -1,4 +1,4 @@
-package com.capgemini;
+package com.tarunsai;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

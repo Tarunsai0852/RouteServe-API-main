@@ -1,4 +1,4 @@
-package com.capgemini.service;
+package com.tarunsai.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;
@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.capgemini.entities.Category;
-import com.capgemini.repo.ICategoryRepository;
+import com.tarunsai.entities.Category;
+import com.tarunsai.repo.ICategoryRepository;
 
 @SpringBootTest
 class ICategoryServiceImplTest {

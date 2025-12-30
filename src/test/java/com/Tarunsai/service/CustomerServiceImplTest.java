@@ -1,4 +1,4 @@
-package com.capgemini.service;
+package com.tarunsai.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,13 +21,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.capgemini.entities.Address;
-import com.capgemini.entities.Category;
-import com.capgemini.entities.Customer;
-import com.capgemini.entities.FoodCart;
-import com.capgemini.entities.Item;
-import com.capgemini.entities.Restaurant;
-import com.capgemini.repo.ICustomerRepository;
+import com.tarunsai.entities.Address;
+import com.tarunsai.entities.Category;
+import com.tarunsai.entities.Customer;
+import com.tarunsai.entities.FoodCart;
+import com.tarunsai.entities.Item;
+import com.tarunsai.entities.Restaurant;
+import com.tarunsai.repo.ICustomerRepository;
 
 @DisplayName("Customer Service Test Cases")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

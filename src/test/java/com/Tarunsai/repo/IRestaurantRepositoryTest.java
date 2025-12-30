@@ -1,4 +1,4 @@
-//package com.capgemini.repo;
+//package com.tarunsai.repo;
 //
 //import static org.assertj.core.api.Assertions.assertThat;
 //
@@ -12,9 +12,9 @@
 //import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;
 //
-//import com.capgemini.entities.Address;
-//import com.capgemini.entities.Item;
-//import com.capgemini.entities.Restaurant;
+//import com.tarunsai.entities.Address;
+//import com.tarunsai.entities.Item;
+//import com.tarunsai.entities.Restaurant;
 //
 //@DataJpaTest
 //@ExtendWith(SpringExtension.class)
