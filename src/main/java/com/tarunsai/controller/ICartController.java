@@ -32,8 +32,8 @@ public class ICartController {
 	@PostMapping("/addItemToCart/{itemId}")
 	public ResponseEntity<FoodCart> addItemToCart(@RequestBody FoodCart foodCart, @PathVariable String itemId,
 			HttpServletRequest request) {
-//		// session checking
-//		boolean validLogin = loginService.checkSession(request);
+		// session checking
+		boolean validLogin = loginService.checkSession(request);
 		if (!validLogin) {
 			throw new IllegalArgumentException("Not logged in");
 		}
